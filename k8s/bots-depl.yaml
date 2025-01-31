@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bots-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bots
+  template:
+    metadata:
+      labels:
+        app: bots
+    spec:
+      containers:
+        - name: bots
+          image: ecuationable/bootree-bots
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+            - name: MONGO_URI
+              value: mongodb://bots-mongo-srv/bots
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bots-srv-ci
+spec:
+  selector:
+    app: bots
+  ports:
+    - name: bots
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
