@@ -21,8 +21,31 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
-            - name: MONGO_URI
-              value: mongodb://bots-mongo-srv/bots
+            - name: CLIENTID
+              valueFrom:
+                configMapKeyRef:
+                  name: bots-config
+                  key: CLIENTID
+            - name: ACCESSTOKEN
+              valueFrom:
+                configMapKeyRef:
+                  name: bots-config
+                  key: ACCESSTOKEN
+            - name: BROADCASTER
+              valueFrom:
+                configMapKeyRef:
+                  name: bots-config
+                  key: BROADCASTER
+            - name: USER_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: bots-config
+                  key: USER_ID
+            - name: OPENAI_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: bots-config
+                  key: OPENAI_API_KEY
 ---
 apiVersion: v1
 kind: Service

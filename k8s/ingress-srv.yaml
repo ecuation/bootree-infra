@@ -17,3 +17,10 @@ spec:
                 name: users-srv-ci
                 port:
                   number: 3000
+          - path: /api/bot/?(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: bots-srv-ci
+                port:
+                  number: 3000
