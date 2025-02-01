@@ -46,6 +46,13 @@ spec:
                 configMapKeyRef:
                   name: bots-config
                   key: OPENAI_API_KEY
+            - name: MODERATION_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: bots-config
+                  key: MODERATION_ACTIVE
+            - name: MONGO_URI
+              value: mongodb://users-mongo-srv/users
 ---
 apiVersion: v1
 kind: Service
